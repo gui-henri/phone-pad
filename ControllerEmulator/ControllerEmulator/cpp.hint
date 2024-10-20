@@ -1,0 +1,5 @@
+// Arquivos de dica ajudam o Visual Studio IDE a interpretar identificadores do Visual C++
+// por exemplo, nomes de funções e macros.
+// Para obter mais informações, consulte https://go.microsoft.com/fwlink/?linkid=865984
+#define assert(expression) ((void)0)
+#define assert(expression) (void)( (!!(expression)) || (_wassert(_CRT_WIDE(#expression), _CRT_WIDE(__FILE__), (unsigned)(__LINE__)), 0) )
