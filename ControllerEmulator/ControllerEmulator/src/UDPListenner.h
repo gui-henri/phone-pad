@@ -11,15 +11,23 @@ namespace Network
 	const unsigned int BUFFER_LENGHT = 256;
 	const unsigned int PORT = 4321;
 
+	struct Command {
+		int err;
+		const char* command;
+	};
+
 	class UDPListenner
 	{
 	public:
 		UDPListenner();
 		~UDPListenner();
 
-		void run();
-		void set_timeout(long p_seconds, long p_nanoseconds);
-		void set_exit_request(bool p_exitRequest);
+		void	 connect();
+		
+		// void proccess();
+		void	 set_timeout(long p_seconds, long p_nanoseconds);
+		void	 set_exit_request(bool p_exitRequest);
+		Command  proccess_blocking();
 		
 
 	private:
@@ -37,6 +45,7 @@ namespace Network
 		int		check_incoming_data();
 		void	clear_client_message();
 		bool	check_exit_request();
+		bool	check_restart_request();
 		void	print_message() const;
 		int		send(const char p_message[]);
 		int		listen_incomming_client();

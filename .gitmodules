@@ -1,0 +1,3 @@
+[submodule "ControllerEmulator/vendor/ViGEmClient"]
+	path = ControllerEmulator/vendor/ViGEmClient
+	url = https://github.com/nefarius/ViGEmClient.git

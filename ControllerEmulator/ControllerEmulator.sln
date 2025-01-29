@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ControllerEmulator", "ControllerEmulator\ControllerEmulator.vcxproj", "{777BA86A-BE6E-4850-9257-58BD86AB7D09}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC} = {7DB06674-1F4F-464B-8E1C-172E9587F9DC}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ViGEmClient", "vendor\ViGEmClient\src\ViGEmClient.vcxproj", "{7DB06674-1F4F-464B-8E1C-172E9587F9DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,14 @@ Global
 		{777BA86A-BE6E-4850-9257-58BD86AB7D09}.Release|x64.Build.0 = Release|x64
 		{777BA86A-BE6E-4850-9257-58BD86AB7D09}.Release|x86.ActiveCfg = Release|Win32
 		{777BA86A-BE6E-4850-9257-58BD86AB7D09}.Release|x86.Build.0 = Release|Win32
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Debug|x64.ActiveCfg = Debug_LIB|x64
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Debug|x64.Build.0 = Debug_LIB|x64
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Debug|x86.ActiveCfg = Debug_DLL|Win32
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Debug|x86.Build.0 = Debug_DLL|Win32
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Release|x64.ActiveCfg = Release_DLL|x64
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Release|x64.Build.0 = Release_DLL|x64
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Release|x86.ActiveCfg = Release_LIB|Win32
+		{7DB06674-1F4F-464B-8E1C-172E9587F9DC}.Release|x86.Build.0 = Release_LIB|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

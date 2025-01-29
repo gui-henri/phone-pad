@@ -1,4 +1,3 @@
-#include <ws2tcpip.h>
 #include "UDPListenner.h"
 constexpr auto CONNECT = "CONNECT";
 constexpr auto IP_FOUND = "IP_FOUND";
@@ -39,7 +38,7 @@ namespace Network {
 		WSACleanup();
 	}
 
-	void UDPListenner::run()
+	void UDPListenner::connect()
 	{
 		std::cout << "Listening to data on port: " << PORT << std::endl;
 		while (!m_exitRequested)
@@ -58,9 +57,7 @@ namespace Network {
 				continue;
 			}
 
-			std::cout << "WORKLOAD NAO IMPLEMENTADO! O servidor foi "
-				<< "capaz de estabelecer uma conexao mas ira fechar agora!" << std::endl;
-			break;
+			return;
 		}
 	}
 
@@ -86,7 +83,7 @@ namespace Network {
 			int recvState = recvfrom(m_serverSocket, m_message, BUFFER_LENGHT, 0, (sockaddr*)&m_clientAddr, &sockSize);
 
 			if (recvState == SOCKET_ERROR) {
-				std::cout << "recvfrom() failed with error code : " << WSAGetLastError() << "\n";
+				std::cout << "recvfrom() failed with error code: " << WSAGetLastError() << "\n";
 				return ReceiveMessagesResults::RECEIVE_ERROR;
 			}
 
@@ -117,7 +114,7 @@ namespace Network {
 
 	int UDPListenner::send(const char p_message[])
 	{
-		int res = sendto(m_serverSocket, p_message, strlen(p_message), 0, (sockaddr*)&m_clientAddr, sizeof(sockaddr_in));
+		int res = sendto(m_serverSocket, p_message, (int)strlen(p_message), 0, (sockaddr*)&m_clientAddr, sizeof(sockaddr_in));
 
 		if (res == SOCKET_ERROR) {
 			std::cout << "Error sending message to: " << m_ipAddrs << "!" << std::endl;
@@ -139,6 +136,7 @@ namespace Network {
 
 		while (listening)
 		{
+			UDPListenner::clear_client_message();
 			int res = UDPListenner::check_incoming_data();
 			if (res == SOCKET_ERROR) {
 				return IncommingClientResults::CHECK_INCOMMING_DATA_ERROR;
@@ -151,7 +149,7 @@ namespace Network {
 
 			if (res == ReceiveMessagesResults::MESSAGE_SUCCESS) {
 				UDPListenner::print_message();
-				if (strcmp(m_message, CONNECT))
+				if (strcmp(m_message, CONNECT) != 0)
 				{
 					continue;
 				}
@@ -164,10 +162,57 @@ namespace Network {
 			}
 
 			listening = !UDPListenner::check_exit_request();
-			UDPListenner::clear_client_message();
 		}
 
 		return IncommingClientResults::STOP_LISTENNING;
+	}
+
+	Command UDPListenner::proccess_blocking() 
+	{
+		UDPListenner::set_timeout(2, 0);
+
+		Command response = {};
+
+		while (true)
+		{
+			UDPListenner::clear_client_message();
+
+			if (UDPListenner::check_exit_request())
+			{
+				response.command = "Q";
+				break;
+			}
+
+			if (UDPListenner::check_restart_request())
+			{
+				response.command = "R";
+				break;
+			}
+
+			int select = UDPListenner::check_incoming_data();
+
+			if (select == SOCKET_ERROR)
+			{
+				response.err = 1;
+				break;
+			}
+
+			int res = UDPListenner::receive_messages(select);
+			if (res == ReceiveMessagesResults::RECEIVE_ERROR)
+			{
+				response.err = 1;
+				break;
+			}
+
+			if (res == ReceiveMessagesResults::MESSAGE_SUCCESS)
+			{
+				std::cout << m_message << std::endl;
+				response.command = m_message;
+				break;
+			}
+		}
+
+		return response;
 	}
 
 	void UDPListenner::clear_client_message()
@@ -179,9 +224,21 @@ namespace Network {
 
 	bool UDPListenner::check_exit_request()
 	{
-		if (Keyboard::is_key_pressed(Keyboard::ESC))
+		if (Keyboard::is_key_pressed(Keyboard::ESC) || Keyboard::is_key_pressed(Keyboard::Q))
 		{
 			std::cout << "Closing server and exiting...\n";
+			return true;
+		}
+
+		return false;
+	}
+
+	bool check_restart_request()
+	{
+		if (Keyboard::is_key_pressed(Keyboard::R))
+		{
+			std::cout << "Closing server and exiting...\n";
+			std::cout << "Restarting...\n";
 			return true;
 		}
 

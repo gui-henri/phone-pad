@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:udp/udp.dart';
@@ -8,11 +9,11 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
   ]);
-  runApp(const MyApp());
+  runApp(const ControllerEmulator());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ControllerEmulator extends StatelessWidget {
+  const ControllerEmulator({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +23,30 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Controller Emulator'),
+      home: const HomePage(title: 'Controller Emulator'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   bool shouldSend = false;
+  bool isConnected = false;
+  String ip = "";
+  int port = 0;
+
   void defineTimer() {
     setState(() {
       shouldSend = !shouldSend;
 
-      Timer.periodic(const Duration(seconds: 3), (timer) async {
+      Timer.periodic(const Duration(seconds: 1), (timer) async {
         final msgs = ["CONNECT"];
 
         if (shouldSend) {
@@ -57,8 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
               return;
             }
 
-            var ip = datagram.address.address;
-            var port = datagram.port;
+            ip = datagram.address.address;
+            port = datagram.port;
+            isConnected = true;
+            shouldSend = false;
             debugPrint("Connected to: $ip:$port");
           });
         }
@@ -81,9 +88,42 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(
-                onPressed: defineTimer,
-                child: Text(shouldSend ? "Stop" : "Start")),
+            Visibility(
+              visible: !isConnected,
+              child: ElevatedButton(
+                  onPressed: defineTimer,
+                  child: Text(shouldSend ? "Stop" : "Start")),
+            ),
+            Visibility(
+              visible: isConnected,
+              child: Column(
+                children: [
+                  const Text("Connected Controller Emulator"),
+                  ElevatedButton(
+                    onPressed: () async {
+                      var udp =
+                          await UDP.bind(Endpoint.any(port: const Port(65000)));
+                      var len = await udp.send(
+                          "~BA11111112874712~".codeUnits,
+                          Endpoint.unicast(InternetAddress(ip),
+                              port: Port(port)));
+                      debugPrint("Sent $len bytes");
+
+                      Timer(const Duration(seconds: 3), () async {
+                        var len = await udp.send(
+                            "~0000000050505050~".codeUnits,
+                            Endpoint.unicast(InternetAddress(ip),
+                                port: Port(port)));
+                        debugPrint("Sent $len bytes");
+                        udp.close();
+                        isConnected = false;
+                      });
+                    },
+                    child: const Text("Press A"),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
