@@ -1,18 +1,20 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:controller_emulator_client/handlers/connection_page_handler.dart';
 import 'package:controller_emulator_client/types/connection_listenner.dart';
 import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:udp/udp.dart';
 
 class ConnectionHandler {
-  bool isConnected = false;
+  Connection connection = Connection.disconnected;
   String _ip = "";
   int _port = 0;
-  UDP _udp;
-  Future<UDP> get udp async {
-    if (_udp.closed) {
-      _udp = await UDP.bind(Endpoint.any(port: const Port(4322)));
+  static var _udp = UDP.bind(Endpoint.any(port: const Port(4322)));
+  static Future<UDP> get udp async {
+    var udpInstance = await _udp;
+    if (udpInstance.closed) {
+      _udp = UDP.bind(Endpoint.any(port: const Port(4322)));
     }
     return _udp;
   }
@@ -20,15 +22,15 @@ class ConnectionHandler {
   static const messageConnect = "CONNECT";
   List<ConnectionListener> listeners = [];
 
-  ConnectionHandler(this._udp);
+  ConnectionHandler();
 
-  set connected(bool value) {
-    isConnected = value;
-    if (isConnected) {
+  set connected(Connection state) {
+    connection = state;
+    if (connection == Connection.connected) {
       for (var listener in listeners) {
         listener.onConnected();
       }
-    } else {
+    } else if (connection == Connection.disconnected) {
       for (var listener in listeners) {
         listener.onDisconnected();
       }
@@ -54,7 +56,7 @@ class ConnectionHandler {
   Future<bool> connect() async {
     final udpInstance = await udp;
 
-    while (!isConnected) {
+    while (connection != Connection.connected) {
       try {
         final completer = Completer<void>();
         await udpInstance.send(messageConnect.codeUnits,
@@ -67,7 +69,7 @@ class ConnectionHandler {
 
             _ip = datagram.address.address;
             _port = datagram.port;
-            isConnected = true;
+            connection = Connection.connected;
 
             completer.complete();
           },
@@ -78,7 +80,7 @@ class ConnectionHandler {
 
         await completer.future;
 
-        if (!isConnected) {
+        if (connection != Connection.connected) {
           await Future.delayed(const Duration(seconds: 2));
         }
       } catch (e) {
@@ -90,7 +92,7 @@ class ConnectionHandler {
   }
 
   Future<void> updateRemoteXCMobi(ControllerState state) async {
-    if (!isConnected || _ip == "" || _port == 0) {
+    if (connection != Connection.connected || _ip == "" || _port == 0) {
       return;
     }
 
@@ -100,12 +102,14 @@ class ConnectionHandler {
   }
 
   Future<void> disconnect() async {
-    if (!isConnected || _ip == "" || _port == 0) {
+    if (connection != Connection.connected || _ip == "" || _port == 0) {
       return;
     }
     final udpInstance = await udp;
     await udpInstance.send("R".codeUnits,
         Endpoint.unicast(InternetAddress(_ip), port: Port(_port)));
-    isConnected = false;
+    connection = Connection.disconnected;
+    _ip = "";
+    _port = 0;
   }
 }

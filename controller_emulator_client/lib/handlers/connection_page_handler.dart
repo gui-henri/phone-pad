@@ -2,7 +2,8 @@ import 'package:controller_emulator_client/handlers/udp_handler.dart';
 import 'package:flutter/material.dart';
 
 enum Connection {
-  ignore,
+  disconnected,
+  trying,
   connected,
   error,
 }
@@ -11,9 +12,9 @@ class ConnectionPageHandler {
   final ConnectionHandler connectionHandler;
   ConnectionPageHandler(this.connectionHandler);
 
-  Future<Connection> handleConnection(bool tryingToConnect) async {
-    if (!tryingToConnect) {
-      return Connection.ignore;
+  Future<Connection> tryConnection(Connection state) async {
+    if (state != Connection.trying) {
+      return Connection.disconnected;
     }
     try {
       final con = await connectionHandler.connect();
