@@ -15,8 +15,9 @@ class ConnectionHandler {
     var udpInstance = await _udp;
     if (udpInstance.closed) {
       _udp = UDP.bind(Endpoint.any(port: const Port(4322)));
+      udpInstance = await _udp;
     }
-    return _udp;
+    return udpInstance;
   }
 
   static const messageConnect = "CONNECT";

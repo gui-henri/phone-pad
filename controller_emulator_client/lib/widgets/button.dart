@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatefulWidget {
+class ButtonPad extends StatefulWidget {
   final String text;
   final VoidCallback? onPressed;
 
-  const Button({super.key, required this.text, required this.onPressed});
+  const ButtonPad({super.key, required this.text, required this.onPressed});
   @override
-  State<Button> createState() => _ButtonState();
+  State<ButtonPad> createState() => _ButtonPadState();
 }
 
-class _ButtonState extends State<Button> {
+class _ButtonPadState extends State<ButtonPad> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: widget.onPressed,
-      style: ElevatedButton.styleFrom(),
-      child: Text(widget.text),
-    );
+    return IconButton(onPressed: () {}, icon: Text(widget.text));
   }
 }
