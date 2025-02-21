@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 class ShoulderButton extends StatefulWidget {
   final String text;
+  final double? size;
   final Function? onPressed;
   final Function? onRelease;
   final Icon? icon;
   const ShoulderButton(
       {super.key,
+      this.size,
       required this.text,
       required this.onPressed,
       required this.onRelease,
@@ -43,8 +45,8 @@ class _ShoulderButtonState extends State<ShoulderButton> {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-          width: 70.0,
-          height: 70.0,
+          width: (widget.size == null) ? 70.0 : widget.size,
+          height: (widget.size == null) ? 70.0 : widget.size,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.transparent,
@@ -91,21 +93,19 @@ class _RightTriggersState extends State<RightTriggers> {
         Row(
           spacing: 8,
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.transparent,
-                border: Border.fromBorderSide(
-                    BorderSide(color: Colors.white70, width: 4.0)),
-              ),
-              child: IconButton(
-                  highlightColor: Colors.white38,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.play_arrow,
-                    size: 32,
-                    color: Colors.white70,
-                  )),
+            ShoulderButton(
+              size: 56,
+              onPressed: () {
+                widget.state.startButton = true;
+                ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+              },
+              onRelease: () {
+                widget.state.startButton = false;
+                ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+              },
+              text: "Start",
+              icon:
+                  const Icon(Icons.play_arrow, color: Colors.white70, size: 32),
             ),
             const SizedBox(width: 40),
             ShoulderButton(

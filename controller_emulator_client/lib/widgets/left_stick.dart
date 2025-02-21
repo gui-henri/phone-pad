@@ -121,10 +121,10 @@ class _LeftStickState extends State<LeftStick> {
               listener: (details) {
                 widget.state.leftStickX = _mapFromJoystick(details.x);
                 widget.state.leftStickY = _mapFromJoystick(-details.y);
-                if (lastX != widget.state.rightStickX ||
-                    lastY != widget.state.rightStickY) {
-                  lastX = widget.state.rightStickX;
-                  lastY = widget.state.rightStickY;
+                if (lastX != widget.state.leftStickX ||
+                    lastY != widget.state.leftStickX) {
+                  lastX = widget.state.leftStickX;
+                  lastY = widget.state.leftStickX;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
                 }
               }),
