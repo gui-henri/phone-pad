@@ -1,9 +1,11 @@
+import 'package:controller_emulator_client/pages/connection_page.dart';
+import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:controller_emulator_client/widgets/right_triggers.dart';
 import 'package:flutter/material.dart';
 
 class LeftTriggers extends StatefulWidget {
-  const LeftTriggers({super.key});
-
+  const LeftTriggers({super.key, required this.state});
+  final ControllerState state;
   @override
   State<LeftTriggers> createState() => _LeftTriggersState();
 }
@@ -16,9 +18,36 @@ class _LeftTriggersState extends State<LeftTriggers> {
         Row(
           spacing: 8,
           children: [
-            ShoulderButton(onPressed: () {}, text: "L1"),
-            ShoulderButton(onPressed: () {}, text: "L2"),
-            ShoulderButton(onPressed: () {}, text: "L3"),
+            ShoulderButton(
+                onPressed: () {
+                  widget.state.lButton = true;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                onRelease: () {
+                  widget.state.lButton = false;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                text: "L1"),
+            ShoulderButton(
+                onPressed: () {
+                  widget.state.ltButton = true;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                onRelease: () {
+                  widget.state.ltButton = false;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                text: "L2"),
+            ShoulderButton(
+                onPressed: () {
+                  widget.state.tlButton = true;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                onRelease: () {
+                  widget.state.tlButton = false;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                },
+                text: "L3"),
             const SizedBox(width: 40),
             Container(
               decoration: const BoxDecoration(

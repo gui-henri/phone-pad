@@ -1,24 +1,24 @@
 class ControllerState {
-  final bool aButton;
-  final bool bButton;
-  final bool xButton;
-  final bool yButton;
-  final bool startButton;
-  final bool selectButton;
-  final bool leftButton;
-  final bool rightButton;
-  final bool upButton;
-  final bool downButton;
-  final bool lButton;
-  final bool rButton;
-  final bool tlButton;
-  final bool trButton;
-  final bool ltButton;
-  final bool rtButton;
-  final int leftStickX;
-  final int leftStickY;
-  final int rightStickX;
-  final int rightStickY;
+  bool aButton;
+  bool bButton;
+  bool xButton;
+  bool yButton;
+  bool startButton;
+  bool selectButton;
+  bool leftButton;
+  bool rightButton;
+  bool upButton;
+  bool downButton;
+  bool lButton;
+  bool rButton;
+  bool tlButton;
+  bool trButton;
+  bool ltButton;
+  bool rtButton;
+  int leftStickX;
+  int leftStickY;
+  int rightStickX;
+  int rightStickY;
 
   ControllerState({
     this.aButton = false,
@@ -37,10 +37,10 @@ class ControllerState {
     this.trButton = false,
     this.ltButton = false,
     this.rtButton = false,
-    this.leftStickX = 0,
-    this.leftStickY = 0,
-    this.rightStickX = 0,
-    this.rightStickY = 0,
+    this.leftStickX = 50,
+    this.leftStickY = 50,
+    this.rightStickX = 50,
+    this.rightStickY = 50,
   });
 
   List<int> toXCMobiCode() {

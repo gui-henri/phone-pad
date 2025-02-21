@@ -1,5 +1,6 @@
 import 'package:controller_emulator_client/handlers/connection_page_handler.dart';
 import 'package:controller_emulator_client/pages/connection_page.dart';
+import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:controller_emulator_client/widgets/left_stick.dart';
 import 'package:controller_emulator_client/widgets/left_triggers.dart';
 import 'package:controller_emulator_client/widgets/right_stick.dart';
@@ -15,6 +16,8 @@ class ControllerPage extends StatefulWidget {
 }
 
 class _ControllerPageState extends State<ControllerPage> {
+  var state = ControllerState();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,21 +41,21 @@ class _ControllerPageState extends State<ControllerPage> {
           },
         ),
       ),
-      body: const Column(
+      body: Column(
         spacing: 10,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              LeftTriggers(),
-              RightTriggers(),
+              LeftTriggers(state: state),
+              RightTriggers(state: state),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              LeftStick(),
-              RightStick(),
+              LeftStick(state: state),
+              RightStick(state: state),
             ],
           ),
         ],

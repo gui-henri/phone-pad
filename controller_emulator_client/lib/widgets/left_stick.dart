@@ -1,15 +1,25 @@
+import 'package:controller_emulator_client/pages/connection_page.dart';
+import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:controller_emulator_client/widgets/right_triggers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 
 class LeftStick extends StatefulWidget {
-  const LeftStick({super.key});
+  const LeftStick({super.key, required this.state});
+  final ControllerState state;
 
   @override
   State<LeftStick> createState() => _LeftStickState();
 }
 
 class _LeftStickState extends State<LeftStick> {
+  int lastX = 50;
+  int lastY = 50;
+
+  int _mapFromJoystick(double input) {
+    return (((input + 1) * 99) / 2).toInt();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,7 +31,14 @@ class _LeftStickState extends State<LeftStick> {
           top: 10,
           child: ShoulderButton(
             text: "Up",
-            onPressed: () {},
+            onPressed: () {
+              widget.state.upButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.upButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
             icon: const Icon(
               Icons.keyboard_arrow_up,
               color: Colors.white70,
@@ -34,7 +51,14 @@ class _LeftStickState extends State<LeftStick> {
           top: 35,
           child: ShoulderButton(
             text: "Left",
-            onPressed: () {},
+            onPressed: () {
+              widget.state.leftButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.leftButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
             icon: const Icon(
               Icons.keyboard_arrow_left,
               color: Colors.white70,
@@ -47,7 +71,14 @@ class _LeftStickState extends State<LeftStick> {
           top: 98,
           child: ShoulderButton(
             text: "Right",
-            onPressed: () {},
+            onPressed: () {
+              widget.state.rightButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.rightButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
             icon: const Icon(
               Icons.keyboard_arrow_right,
               color: Colors.white70,
@@ -60,7 +91,14 @@ class _LeftStickState extends State<LeftStick> {
           top: 171,
           child: ShoulderButton(
             text: "Down",
-            onPressed: () {},
+            onPressed: () {
+              widget.state.downButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.downButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
             icon: const Icon(
               Icons.keyboard_arrow_down,
               color: Colors.white70,
@@ -81,8 +119,14 @@ class _LeftStickState extends State<LeftStick> {
                 size: 100,
               ),
               listener: (details) {
-                debugPrint(details.x.toString());
-                debugPrint(details.y.toString());
+                widget.state.leftStickX = _mapFromJoystick(details.x);
+                widget.state.leftStickY = _mapFromJoystick(-details.y);
+                if (lastX != widget.state.rightStickX ||
+                    lastY != widget.state.rightStickY) {
+                  lastX = widget.state.rightStickX;
+                  lastY = widget.state.rightStickY;
+                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                }
               }),
         ),
       ]),
