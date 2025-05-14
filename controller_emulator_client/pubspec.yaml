@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   udp: ^5.0.3
+  sensors_plus: ^6.1.1
+  flutter_rotation_sensor: ^0.1.1
   flutter_joystick: ^0.2.1
   flutter:
     sdk: flutter

@@ -26,6 +26,13 @@ class _ConnectionPageState extends State<ConnectionPage> {
           title: const Text("XC-Mobi"),
           leading: null,
           automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/config");
+                },
+                icon: const Icon(Icons.settings))
+          ],
         ),
         body: FutureBuilder(
             future: ConnectionHandler.udp,

@@ -1,3 +1,4 @@
+import 'package:controller_emulator_client/configs/steering.dart';
 import 'package:controller_emulator_client/pages/connection_page.dart';
 import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:controller_emulator_client/widgets/right_triggers.dart';
@@ -9,12 +10,24 @@ class LeftStick extends StatefulWidget {
   final ControllerState state;
 
   @override
-  State<LeftStick> createState() => _LeftStickState();
+  State<LeftStick> createState() => LeftStickState();
 }
 
-class _LeftStickState extends State<LeftStick> {
+class LeftStickState extends State<LeftStick> {
   int lastX = 50;
   int lastY = 50;
+  late SteeringController steering;
+
+  @override
+  void initState() {
+    super.initState();
+    steering = SteeringController(
+        alpha: SteeringConfiguration.steeringSensitivity, state: widget.state);
+
+    if (SteeringConfiguration.steeringState == SteeringState.leftStick) {
+      steering.start();
+    }
+  }
 
   int _mapFromJoystick(double input) {
     return (((input + 1) * 99) / 2).toInt();
@@ -119,13 +132,35 @@ class _LeftStickState extends State<LeftStick> {
                 size: 100,
               ),
               listener: (details) {
-                widget.state.leftStickX = _mapFromJoystick(details.x);
-                widget.state.leftStickY = _mapFromJoystick(-details.y);
-                if (lastX != widget.state.leftStickX ||
-                    lastY != widget.state.leftStickX) {
-                  lastX = widget.state.leftStickX;
-                  lastY = widget.state.leftStickX;
-                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                if (SteeringConfiguration.steeringState !=
+                    SteeringState.leftStick) {
+                  widget.state.leftStickX = _mapFromJoystick(details.x);
+                  widget.state.leftStickY = _mapFromJoystick(-details.y);
+                  if (lastX != widget.state.leftStickX ||
+                      lastY != widget.state.leftStickX) {
+                    lastX = widget.state.leftStickX;
+                    lastY = widget.state.leftStickX;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
+                }
+
+                if (SteeringAxis.x == SteeringConfiguration.steeringAxis) {
+                  widget.state.leftStickY = _mapFromJoystick(-details.y);
+                  if (lastY != widget.state.leftStickY) {
+                    lastY = widget.state.leftStickY;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
+                }
+
+                if (SteeringAxis.y == SteeringConfiguration.steeringAxis) {
+                  widget.state.leftStickY = _mapFromJoystick(details.x);
+                  if (lastY != widget.state.leftStickY) {
+                    lastY = widget.state.leftStickY;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
                 }
               }),
         ),
