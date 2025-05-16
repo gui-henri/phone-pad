@@ -137,9 +137,9 @@ class LeftStickState extends State<LeftStick> {
                   widget.state.leftStickX = _mapFromJoystick(details.x);
                   widget.state.leftStickY = _mapFromJoystick(-details.y);
                   if (lastX != widget.state.leftStickX ||
-                      lastY != widget.state.leftStickX) {
+                      lastY != widget.state.leftStickY) {
                     lastX = widget.state.leftStickX;
-                    lastY = widget.state.leftStickX;
+                    lastY = widget.state.leftStickY;
                     ConnectionPage.connection.updateRemoteXCMobi(widget.state);
                   }
                   return;
@@ -155,9 +155,9 @@ class LeftStickState extends State<LeftStick> {
                 }
 
                 if (SteeringAxis.y == SteeringConfiguration.steeringAxis) {
-                  widget.state.leftStickY = _mapFromJoystick(details.x);
-                  if (lastY != widget.state.leftStickY) {
-                    lastY = widget.state.leftStickY;
+                  widget.state.leftStickX = _mapFromJoystick(details.x);
+                  if (lastX != widget.state.leftStickX) {
+                    lastX = widget.state.leftStickX;
                     ConnectionPage.connection.updateRemoteXCMobi(widget.state);
                   }
                   return;
