@@ -17,7 +17,7 @@ namespace Controller
         if (!VIGEM_SUCCESS(retval))
         {
             std::cerr << "ViGEm Bus connection failed with error code: 0x" << std::hex << retval << std::endl;
-            throw std::runtime_error("Failed to allocate memory for m_client.");
+            throw std::runtime_error("Failed to retval.");
         }
 
         m_pad = vigem_target_x360_alloc();
@@ -26,7 +26,7 @@ namespace Controller
         if (!VIGEM_SUCCESS(pir))
         {
             std::cerr << "Target plugin failed with error code: 0x" << std::hex << pir << std::endl;
-            throw std::runtime_error("Failed to allocate memory for m_client.");
+            throw std::runtime_error("failed m_pad.");
         }
     }
 

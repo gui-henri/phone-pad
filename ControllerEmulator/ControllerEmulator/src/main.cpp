@@ -17,8 +17,12 @@ int main()
         while (true)
         {
             auto response = server.proccess_blocking();
+            if (strcmp(response.command, "R") == 0) break;
             if (response.command == "R") break;
-            if (response.err == 1) break;
+            if (response.err == 1) {
+                quit = true;
+                std::cout << "An error has ocorred. Quitting..." << std::endl;
+            }
             if (response.command == "Q") {
                 quit = true;
                 break;

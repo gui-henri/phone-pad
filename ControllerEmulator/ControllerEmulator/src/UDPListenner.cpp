@@ -233,7 +233,7 @@ namespace Network {
 		return false;
 	}
 
-	bool check_restart_request()
+	bool UDPListenner::check_restart_request()
 	{
 		if (Keyboard::is_key_pressed(Keyboard::R))
 		{
