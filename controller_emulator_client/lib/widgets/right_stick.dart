@@ -2,6 +2,7 @@ import 'package:controller_emulator_client/pages/connection_page.dart';
 import 'package:controller_emulator_client/types/controller_state.dart';
 import 'package:controller_emulator_client/widgets/right_triggers.dart';
 import 'package:flutter/material.dart';
+import 'package:controller_emulator_client/configs/steering.dart';
 import 'package:flutter_joystick/flutter_joystick.dart';
 
 class RightStick extends StatefulWidget {
@@ -100,13 +101,35 @@ class _RightStickState extends State<RightStick> {
                 size: 100,
               ),
               listener: (details) {
-                widget.state.rightStickX = _mapFromJoystick(details.x);
-                widget.state.rightStickY = _mapFromJoystick(-details.y);
-                if (lastX != widget.state.rightStickX ||
-                    lastY != widget.state.rightStickY) {
-                  lastX = widget.state.rightStickX;
-                  lastY = widget.state.rightStickY;
-                  ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                if (SteeringConfiguration.steeringState !=
+                    SteeringState.rightStick) {
+                  widget.state.rightStickX = _mapFromJoystick(details.x);
+                  widget.state.rightStickY = _mapFromJoystick(-details.y);
+                  if (lastX != widget.state.rightStickX ||
+                      lastY != widget.state.rightStickY) {
+                    lastX = widget.state.rightStickX;
+                    lastY = widget.state.rightStickY;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
+                }
+
+                if (SteeringAxis.x == SteeringConfiguration.steeringAxis) {
+                  widget.state.rightStickY = _mapFromJoystick(-details.y);
+                  if (lastY != widget.state.rightStickY) {
+                    lastY = widget.state.rightStickY;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
+                }
+
+                if (SteeringAxis.y == SteeringConfiguration.steeringAxis) {
+                  widget.state.leftStickY = _mapFromJoystick(details.x);
+                  if (lastY != widget.state.rightStickX) {
+                    lastY = widget.state.rightStickX;
+                    ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+                  }
+                  return;
                 }
               }),
         ),

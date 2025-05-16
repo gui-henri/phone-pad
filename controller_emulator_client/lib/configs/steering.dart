@@ -77,5 +77,26 @@ class SteeringController {
         return;
       }
     }
+
+    if (SteeringConfiguration.steeringState == SteeringState.rightStick) {
+      if (SteeringAxis.y == SteeringConfiguration.steeringAxis) {
+        state.rightStickY = y;
+        ConnectionPage.connection.updateRemoteXCMobi(state);
+        return;
+      }
+
+      if (SteeringAxis.x == SteeringConfiguration.steeringAxis) {
+        state.rightStickX = x;
+        ConnectionPage.connection.updateRemoteXCMobi(state);
+        return;
+      }
+
+      if (SteeringConfiguration.steeringAxis == SteeringAxis.both) {
+        state.rightStickX = x;
+        state.rightStickY = y;
+        ConnectionPage.connection.updateRemoteXCMobi(state);
+        return;
+      }
+    }
   }
 }
