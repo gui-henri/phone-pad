@@ -45,8 +45,8 @@ class _ShoulderButtonState extends State<ShoulderButton> {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-          width: (widget.size == null) ? 70.0 : widget.size,
-          height: (widget.size == null) ? 70.0 : widget.size,
+          width: (widget.size == null) ? 80.0 : widget.size,
+          height: (widget.size == null) ? 80.0 : widget.size,
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.transparent,
@@ -94,7 +94,7 @@ class _RightTriggersState extends State<RightTriggers> {
           spacing: 8,
           children: [
             ShoulderButton(
-              size: 56,
+              size: 70,
               onPressed: () {
                 widget.state.startButton = true;
                 ConnectionPage.connection.updateRemoteXCMobi(widget.state);
