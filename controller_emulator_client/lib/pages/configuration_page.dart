@@ -10,7 +10,7 @@ class ConfigurationPage extends StatefulWidget {
 }
 
 class _ConfigurationPageState extends State<ConfigurationPage> {
-  void handleGyroscopeRadioChange(SteeringState? value) {
+  void handleMotionControllRadioChange(SteeringState? value) {
     setState(() {
       if (value == null) {
         SteeringConfiguration.steeringState = SteeringState.disabled;
@@ -19,7 +19,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     });
   }
 
-  void handleGyroscopeAxisRadioChange(SteeringAxis? value) {
+  void handleMotionControllAxisRadioChange(SteeringAxis? value) {
     setState(() {
       if (value == null) {
         SteeringConfiguration.steeringAxis = SteeringAxis.x;
@@ -54,7 +54,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
         child: ListView(
           children: [
             const Text(
-              "Gyroscope",
+              "Motion Control",
               style: TextStyle(fontSize: 36, color: Colors.white),
             ),
             ListTile(
@@ -63,7 +63,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringState>(
                   value: SteeringState.disabled,
                   groupValue: SteeringConfiguration.steeringState,
-                  onChanged: handleGyroscopeRadioChange,
+                  onChanged: handleMotionControllRadioChange,
                 )),
             ListTile(
                 title: const Text('Left Stick',
@@ -71,7 +71,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringState>(
                   value: SteeringState.leftStick,
                   groupValue: SteeringConfiguration.steeringState,
-                  onChanged: handleGyroscopeRadioChange,
+                  onChanged: handleMotionControllRadioChange,
                 )),
             ListTile(
                 title: const Text('Right Stick',
@@ -79,10 +79,10 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringState>(
                   value: SteeringState.rightStick,
                   groupValue: SteeringConfiguration.steeringState,
-                  onChanged: handleGyroscopeRadioChange,
+                  onChanged: handleMotionControllRadioChange,
                 )),
             const Text(
-              "Gyroscope Axis",
+              "Motion Control Axis",
               style: TextStyle(fontSize: 36, color: Colors.white),
             ),
             ListTile(
@@ -91,7 +91,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.x,
                   groupValue: SteeringConfiguration.steeringAxis,
-                  onChanged: handleGyroscopeAxisRadioChange,
+                  onChanged: handleMotionControllAxisRadioChange,
                 )),
             ListTile(
                 title: const Text('Y Axis',
@@ -99,7 +99,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.y,
                   groupValue: SteeringConfiguration.steeringAxis,
-                  onChanged: handleGyroscopeAxisRadioChange,
+                  onChanged: handleMotionControllAxisRadioChange,
                 )),
             ListTile(
                 title: const Text('Both Axis',
@@ -107,7 +107,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.both,
                   groupValue: SteeringConfiguration.steeringAxis,
-                  onChanged: handleGyroscopeAxisRadioChange,
+                  onChanged: handleMotionControllAxisRadioChange,
                 )),
           ],
         ),
