@@ -18,6 +18,7 @@ class ControllerPage extends StatefulWidget {
 class _ControllerPageState extends State<ControllerPage> {
   var state = ControllerState();
   final GlobalKey<LeftStickState> _leftStickKey = GlobalKey();
+  final GlobalKey<LeftStickState> _rightStickKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class _ControllerPageState extends State<ControllerPage> {
           onPressed: () {
             ConnectionPage.connectionState = Connection.disconnected;
             _leftStickKey.currentState?.steering.stop();
+            _rightStickKey.currentState?.steering.stop();
             Navigator.of(context).pushNamed("/connection");
             ConnectionPage.connection.disconnect();
           },
@@ -57,7 +59,7 @@ class _ControllerPageState extends State<ControllerPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               LeftStick(key: _leftStickKey, state: state),
-              RightStick(state: state),
+              RightStick(key: _rightStickKey, state: state),
             ],
           ),
         ],
