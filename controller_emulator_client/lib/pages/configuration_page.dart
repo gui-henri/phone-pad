@@ -55,11 +55,11 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
           children: [
             const Text(
               "Motion Control",
-              style: TextStyle(fontSize: 36, color: Colors.white),
+              style: TextStyle(fontSize: 24, color: Colors.white),
             ),
             ListTile(
                 title: const Text('Disabled',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringState>(
                   value: SteeringState.disabled,
                   groupValue: SteeringConfiguration.steeringState,
@@ -67,7 +67,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 )),
             ListTile(
                 title: const Text('Left Stick',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringState>(
                   value: SteeringState.leftStick,
                   groupValue: SteeringConfiguration.steeringState,
@@ -75,7 +75,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 )),
             ListTile(
                 title: const Text('Right Stick',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringState>(
                   value: SteeringState.rightStick,
                   groupValue: SteeringConfiguration.steeringState,
@@ -83,11 +83,11 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 )),
             const Text(
               "Motion Control Axis",
-              style: TextStyle(fontSize: 36, color: Colors.white),
+              style: TextStyle(fontSize: 24, color: Colors.white),
             ),
             ListTile(
                 title: const Text('X Axis',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.x,
                   groupValue: SteeringConfiguration.steeringAxis,
@@ -95,7 +95,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 )),
             ListTile(
                 title: const Text('Y Axis',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.y,
                   groupValue: SteeringConfiguration.steeringAxis,
@@ -103,7 +103,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 )),
             ListTile(
                 title: const Text('Both Axis',
-                    style: TextStyle(fontSize: 18, color: Colors.white)),
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
                 leading: Radio<SteeringAxis>(
                   value: SteeringAxis.both,
                   groupValue: SteeringConfiguration.steeringAxis,
