@@ -21,8 +21,9 @@ class _ConnectionPageState extends State<ConnectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black38,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Colors.black38,
           title: const Text("XC-Mobi"),
           leading: null,
           automaticallyImplyLeading: false,
