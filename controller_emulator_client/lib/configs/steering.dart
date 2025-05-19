@@ -49,8 +49,8 @@ class SteeringController {
     var pitch = radiansToDegrees(e.eulerAngles.pitch);
     var roll = radiansToDegrees(e.eulerAngles.roll);
 
-    y = normalizeToRange(pitch, -90, 90, 0, 99).round();
-    x = normalizeToRange(roll, -90, 90, 0, 99).round();
+    y = normalizeToRange(pitch * 1.5, -90, 90, 0, 99).round();
+    x = normalizeToRange(roll * 1.5, -90, 90, 0, 99).round();
 
     if (SteeringConfiguration.steeringState == SteeringState.disabled) {
       stop();
