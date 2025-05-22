@@ -28,6 +28,12 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     });
   }
 
+  void handleSensitivityChange(double value) {
+    setState(() {
+      SteeringConfiguration.steeringSensitivity = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +115,20 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   groupValue: SteeringConfiguration.steeringAxis,
                   onChanged: handleMotionControllAxisRadioChange,
                 )),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Sensitivity",
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
+                Slider(
+                    value: SteeringConfiguration.steeringSensitivity,
+                    min: 0.01,
+                    max: 5.0,
+                    divisions: 40,
+                    label: SteeringConfiguration.steeringSensitivity.toString(),
+                    onChanged: (value) {})
+              ],
+            )
           ],
         ),
       ),

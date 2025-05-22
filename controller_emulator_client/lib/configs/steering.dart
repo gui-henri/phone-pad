@@ -11,7 +11,7 @@ enum SteeringAxis { x, y, both }
 class SteeringConfiguration {
   static var steeringState = SteeringState.disabled;
   static var steeringAxis = SteeringAxis.x;
-  static var steeringSensitivity = 0.98;
+  static var steeringSensitivity = 1.0;
 }
 
 class SteeringController {
@@ -49,8 +49,12 @@ class SteeringController {
     var pitch = radiansToDegrees(e.eulerAngles.pitch);
     var roll = radiansToDegrees(e.eulerAngles.roll);
 
-    y = normalizeToRange(pitch * 1.5, -90, 90, 0, 99).round();
-    x = normalizeToRange(roll * 1.5, -90, 90, 0, 99).round();
+    y = normalizeToRange(
+            pitch * SteeringConfiguration.steeringSensitivity, -90, 90, 0, 99)
+        .round();
+    x = normalizeToRange(
+            roll * SteeringConfiguration.steeringSensitivity, -90, 90, 0, 99)
+        .round();
 
     if (SteeringConfiguration.steeringState == SteeringState.disabled) {
       stop();
