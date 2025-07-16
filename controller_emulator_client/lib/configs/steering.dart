@@ -11,7 +11,7 @@ enum SteeringAxis { x, y, both }
 class SteeringConfiguration {
   static var steeringState = SteeringState.disabled;
   static var steeringAxis = SteeringAxis.x;
-  static var steeringSensitivity = 1.0;
+  static var steeringSensitivity = 10.0;
 }
 
 class SteeringController {

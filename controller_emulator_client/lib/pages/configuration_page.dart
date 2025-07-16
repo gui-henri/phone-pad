@@ -122,11 +122,11 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     style: TextStyle(fontSize: 14, color: Colors.white)),
                 Slider(
                     value: SteeringConfiguration.steeringSensitivity,
-                    min: 0.01,
+                    min: 0.0,
                     max: 5.0,
-                    divisions: 40,
+                    divisions: 10,
                     label: SteeringConfiguration.steeringSensitivity.toString(),
-                    onChanged: (value) {})
+                    onChanged: handleSensitivityChange)
               ],
             )
           ],

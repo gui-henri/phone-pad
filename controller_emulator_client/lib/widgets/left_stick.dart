@@ -30,7 +30,8 @@ class LeftStickState extends State<LeftStick> {
   }
 
   int _mapFromJoystick(double input) {
-    return (((input + 1) * 99) / 2).toInt();
+    return (((input * SteeringConfiguration.steeringSensitivity + 1) * 99) / 2)
+        .toInt();
   }
 
   @override
