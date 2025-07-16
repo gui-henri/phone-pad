@@ -38,88 +38,92 @@ class LeftStickState extends State<LeftStick> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 250,
-      width: 300,
+      width: 320,
       child: Stack(children: [
-        // Positioned(
-        //   left: 40,
-        //   top: 10,
-        //   child: ShoulderButton(
-        //     text: "Up",
-        //     onPressed: () {
-        //       widget.state.upButton = true;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     onRelease: () {
-        //       widget.state.upButton = false;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     icon: const Icon(
-        //       Icons.keyboard_arrow_up,
-        //       color: Colors.white70,
-        //       size: 36,
-        //     ),
-        //   ),
-        // ),
-        // Positioned(
-        //   left: 112,
-        //   top: 35,
-        //   child: ShoulderButton(
-        //     text: "Left",
-        //     onPressed: () {
-        //       widget.state.leftButton = true;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     onRelease: () {
-        //       widget.state.leftButton = false;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     icon: const Icon(
-        //       Icons.keyboard_arrow_left,
-        //       color: Colors.white70,
-        //       size: 36,
-        //     ),
-        //   ),
-        // ),
-        // Positioned(
-        //   left: 152,
-        //   top: 98,
-        //   child: ShoulderButton(
-        //     text: "Right",
-        //     onPressed: () {
-        //       widget.state.rightButton = true;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     onRelease: () {
-        //       widget.state.rightButton = false;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     icon: const Icon(
-        //       Icons.keyboard_arrow_right,
-        //       color: Colors.white70,
-        //       size: 36,
-        //     ),
-        //   ),
-        // ),
-        // Positioned(
-        //   left: 144,
-        //   top: 171,
-        //   child: ShoulderButton(
-        //     text: "Down",
-        //     onPressed: () {
-        //       widget.state.downButton = true;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     onRelease: () {
-        //       widget.state.downButton = false;
-        //       ConnectionPage.connection.updateRemoteXCMobi(widget.state);
-        //     },
-        //     icon: const Icon(
-        //       Icons.keyboard_arrow_down,
-        //       color: Colors.white70,
-        //       size: 36,
-        //     ),
-        //   ),
-        // ),
+        Positioned(
+          left: 230,
+          top: 10,
+          child: ShoulderButton(
+            text: "Up",
+            size: 50,
+            onPressed: () {
+              widget.state.upButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.upButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            icon: const Icon(
+              Icons.keyboard_arrow_up,
+              color: Colors.white70,
+              size: 36,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 200,
+          top: 45,
+          child: ShoulderButton(
+            text: "Left",
+            size: 50,
+            onPressed: () {
+              widget.state.leftButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.leftButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            icon: const Icon(
+              Icons.keyboard_arrow_left,
+              color: Colors.white70,
+              size: 36,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 260,
+          top: 45,
+          child: ShoulderButton(
+            text: "Right",
+            size: 50,
+            onPressed: () {
+              widget.state.rightButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.rightButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            icon: const Icon(
+              Icons.keyboard_arrow_right,
+              color: Colors.white70,
+              size: 36,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 230,
+          top: 80,
+          child: ShoulderButton(
+            text: "Down",
+            size: 50,
+            onPressed: () {
+              widget.state.downButton = true;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            onRelease: () {
+              widget.state.downButton = false;
+              ConnectionPage.connection.updateRemoteXCMobi(widget.state);
+            },
+            icon: const Icon(
+              Icons.keyboard_arrow_down,
+              color: Colors.white70,
+              size: 36,
+            ),
+          ),
+        ),
         Positioned(
           bottom: 16,
           left: 32,
@@ -128,10 +132,10 @@ class LeftStickState extends State<LeftStick> {
                 arrowsDecoration: JoystickArrowsDecoration(
                   color: Colors.transparent,
                 ),
-                size: 200,
+                size: 180,
               ),
               stick: const JoystickStick(
-                size: 190,
+                size: 150,
               ),
               listener: (details) {
                 if (SteeringConfiguration.steeringState !=
