@@ -19,6 +19,7 @@ class _LeftTriggersState extends State<LeftTriggers> {
           spacing: 8,
           children: [
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.lButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
@@ -29,6 +30,7 @@ class _LeftTriggersState extends State<LeftTriggers> {
                 },
                 text: "L1"),
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.ltButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
@@ -39,6 +41,7 @@ class _LeftTriggersState extends State<LeftTriggers> {
                 },
                 text: "L2"),
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.tlButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
@@ -50,7 +53,7 @@ class _LeftTriggersState extends State<LeftTriggers> {
                 text: "L3"),
             const SizedBox(width: 40),
             ShoulderButton(
-              size: 56,
+              size: 70,
               onPressed: () {
                 widget.state.selectButton = true;
                 ConnectionPage.connection.updateRemoteXCMobi(widget.state);

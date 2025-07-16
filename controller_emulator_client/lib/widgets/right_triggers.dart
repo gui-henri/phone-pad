@@ -21,58 +21,76 @@ class ShoulderButton extends StatefulWidget {
 }
 
 class _ShoulderButtonState extends State<ShoulderButton> {
+  final GlobalKey _key = GlobalKey();
   bool isPressed = false;
 
-  void onPressed(_) {
-    if (widget.onPressed != null) {
-      widget.onPressed!();
+  void _handlePointerMove(PointerEvent event) {
+    final RenderBox? box =
+        _key.currentContext?.findRenderObject() as RenderBox?;
+    if (box == null) return;
+
+    final Offset topLeft = box.localToGlobal(Offset.zero);
+    final Size size = box.size;
+    final Rect bounds = topLeft & size;
+
+    final bool nowInside = bounds.contains(event.position);
+
+    if (!isPressed && nowInside) {
+      widget.onPressed?.call();
+      setState(() => isPressed = true);
+    } else if (isPressed && !nowInside) {
+      widget.onRelease?.call();
+      setState(() => isPressed = false);
     }
-    setState(() {
-      isPressed = true;
-    });
   }
 
-  void onRelease(_) {
-    if (widget.onRelease != null) {
-      widget.onRelease!();
+  void _handlePointerUp(PointerEvent event) {
+    if (isPressed) {
+      widget.onRelease?.call();
+      setState(() => isPressed = false);
     }
-    setState(() {
-      isPressed = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return ClipOval(
+    final double size = widget.size ?? 100.0;
+
+    return Listener(
+      onPointerMove: _handlePointerMove,
+      onPointerUp: _handlePointerUp,
       child: Container(
-          width: (widget.size == null) ? 80.0 : widget.size,
-          height: (widget.size == null) ? 80.0 : widget.size,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.transparent,
-            border: Border.fromBorderSide(
-                BorderSide(color: Colors.white70, width: 4.0)),
-          ),
-          child: GestureDetector(
-            onTapDown: onPressed,
-            onTapUp: onRelease,
-            onTapCancel: () => onRelease(null),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 100),
-              color: isPressed ? Colors.white38 : Colors.transparent,
-              child: (widget.icon == null)
-                  ? Text(
+        color: Colors.transparent, // <- Important for making Listener work
+        child: Center(
+          child: ClipOval(
+            child: Container(
+              key: _key,
+              width: size,
+              height: size,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.fromBorderSide(
+                  BorderSide(color: Colors.white70, width: 4.0),
+                ),
+              ),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 100),
+                color: isPressed ? Colors.white38 : Colors.transparent,
+                alignment: Alignment.center,
+                child: widget.icon ??
+                    Text(
                       widget.text,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontSize: 28,
-                          color: Colors.white70,
-                          backgroundColor: Colors.transparent,
-                          height: 2),
-                    )
-                  : widget.icon!,
+                        fontSize: 28,
+                        color: Colors.white70,
+                        height: 2,
+                      ),
+                    ),
+              ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -109,6 +127,7 @@ class _RightTriggersState extends State<RightTriggers> {
             ),
             const SizedBox(width: 40),
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.trButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
@@ -119,6 +138,7 @@ class _RightTriggersState extends State<RightTriggers> {
                 },
                 text: "R3"),
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.rtButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);
@@ -129,6 +149,7 @@ class _RightTriggersState extends State<RightTriggers> {
                 },
                 text: "R2"),
             ShoulderButton(
+                size: 80,
                 onPressed: () {
                   widget.state.rButton = true;
                   ConnectionPage.connection.updateRemoteXCMobi(widget.state);

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PhonePad</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="hero">
+                <div class="header">
+                    <div class="title-container">
+                        <h2>PhonePad</h2>
+                        <h1>PhonePad</h1>
+                    </div>
+                    <nav>
+                        <a>Blog</a>
+                        <a>Downloads</a>
+                        <a>Docs</a>
+                        <a>Galego</a>
+                        <a>SIDU</a>
+                        <a>Help</a>
+                    </nav>
+                    <div class="controller" style="position: relative; width: 485px; height: 305px; margin: 0 auto;">
+                        <p>Try pressing the buttons!</p>
+                        <img src="./assets/window.png" alt="An example controller" id="controller-img"
+                            style="width: 100%; height: 100%; display: block;">
+                        <canvas id="game-canvas" width="740" height="305"
+                            style="position: absolute; left: -128px; top: 63px; pointer-events: auto;"></canvas>
+                    </div>
+                </div>
+                <aside>
+                    <div class="cloud-text">
+                        <p>PhonePad is an App that turns
+                            your phone into a full PC con-
+                            troller. It’s lightweight, wireless,
+                            and works on any game.</p>
+                        <p>It aims to be not
+                            only a new way of playing old games, but also
+                            serve as base for
+                            new games. </p>
+                        <p>We believe that new controllers
+                            are a key factor in innovation,
+                            and we want to provide a
+                            universal tool that can help
+                            with that.
+                        </p>
+                        <a id="download-button" class="pixel-download" href="#">Download</a>
+                        <p></p>
+                    </div>
+
+                    <img src="./assets/cloud.png">
+                </aside>
+            </div>
+
+        </div>
+        <section class="brick-section">
+            <div class="brick-main-section">
+                <div class="book-container">
+                    <div class="book">
+                        <h2>Latest News</h2>
+                        <div class="news-list">
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="news-item">
+                                <h3>This is the title of a new</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-container">
+                    <div class="window-text">
+                        <p>
+                            PhonePad is based on two
+                            apps, one is in your PC and
+                            is responsible for RECEIVING
+                            the inputs and emulating a
+                            full controller.
+                        </p>
+                        <p>
+                            The second part is in your
+                            phone, catching your inputs
+                            and SENDING them to
+                            your PC.
+                        </p>
+                    </div>
+                    <div class="window-gif">
+                        <span class="window-phone-text">1. Your Phone</span>
+                        <span class="window-pc-text">2. Your PC</span>
+                        <img src="./assets/anim1.gif" alt="PhonePad sends the inputs to your PC" width="400"
+                            height="400">
+                    </div>
+                </div>
+            </div>
+            <div class="brick-footer">
+                <div class="brick-footer-card">
+                    <img src="./assets/features 1.png" alt="PhonePad uses your phone for motion controll features"
+                        width="137" height="101">
+                    <div>
+                        <h3>Motions</h3>
+                        <p>Add motion controls support to any game you want!</p>
+                    </div>
+                </div>
+                <div class="brick-footer-card">
+                    <img src="./assets/features 2.png" alt="PhonePad uses your phone for motion controll features"
+                        width="137" height="101">
+                    <div>
+                        <h3>Wireless</h3>
+                        <p>Easily connect to
+                            your PC with a single
+                            tap or use QR Code (soon)</p>
+                    </div>
+                </div>
+                <div id="feature-3" class="brick-footer-card">
+                    <img src="./assets/features 3.png" alt="PhonePad uses your phone for motion controll features"
+                        width="137" height="101">
+                    <div>
+                        <h3>Customizable</h3>
+                        <p>Modify the UI to better suit your game and needs (soon)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="footer">
+            <div class="footer-meet-the-creator">
+                <div class="footer-title">
+                    <p id="meet-text">Meet the creator:</p>
+                    <h2 id="galego-shadow">Galego</h2>
+                    <h2>Galego</h2>
+                    <h3>Software Developer</h3>
+                    <p>Github: gui-henri <br> Email: ghguihenrique@gmail.com</p>
+                </div>
+                <div class="footer-text">
+                    <p>
+                        You can contact me for support,
+                        questions or help in general. Don’t
+                        be shy, i will gladly answer!
+                    </p>
+                    <p>
+                        Also, i’m looking for a job. If you
+                        have an offer, let’s schedule a
+                        meeting!
+                    </p>
+                </div>
+            </div>
+            <div class="footer-powered-by">
+                <div>
+                    <h2>Powered by SIDU</h2>
+                    <p>
+                        SIDU is the Open Source connection library
+                        that powers PhonePad. You can use it to
+                        make connections between PCs and phones, like games that use PhonePad as a controller option.
+                        Releasing soon.
+                    </p>
+                </div>
+                <a id="visit-button" class="pixel-download" href="#">Visit</a>
+            </div>
+        </section>
+    </main>
+    <script src="game.js"></script>
+</body>
+
+</html>
