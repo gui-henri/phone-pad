@@ -14,6 +14,19 @@ html {
     background-color: #8BDAF8;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: var(--dark-orange);
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 body {
     padding: 0;
     margin: 0;

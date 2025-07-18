@@ -24,7 +24,8 @@ class _ConnectionPageState extends State<ConnectionPage> {
         backgroundColor: Colors.black38,
         appBar: AppBar(
           backgroundColor: Colors.black38,
-          title: const Text("XC-Mobi"),
+          title:
+              const Text("PhonePad", style: TextStyle(color: Colors.white70)),
           leading: null,
           automaticallyImplyLeading: false,
           actions: [
@@ -32,7 +33,10 @@ class _ConnectionPageState extends State<ConnectionPage> {
                 onPressed: () {
                   Navigator.pushNamed(context, "/config");
                 },
-                icon: const Icon(Icons.settings))
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.white70,
+                ))
           ],
         ),
         body: FutureBuilder(
