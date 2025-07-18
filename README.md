@@ -48,4 +48,21 @@ Use your phone as a controller!
 * Powered by ViGEmBus
 
 ### License
-This project it's source open, but all rights are reserved. You can see, modify and build the project yourself, but you CANNOT sell or redistribute PhonePad, the server, or any components. ViGEmBus has it's own license and it's not covered by this one.
+
+This project is not open source. The source code is made available under the PolyForm Shield License 1.0.0.
+
+This license is designed to be highly restrictive to protect the project from unauthorized commercial use and distribution. Please read the summary below carefully.
+
+#### Key Permissions and Restrictions:
+##### You are free to:
+* View the source code.
+* Use and modify the software for your own personal or internal business purposes.
+
+##### You are strictly forbidden from:
+
+* Making the software available to anyone other than yourself (i.e., no redistribution).
+* Using the software to provide a service to others (e.g., as a commercial SaaS offering).
+* Removing or obscuring any license notices.
+
+The goal is to provide transparency and allow users to modify the software for their own use, while preventing it from being sold or distributed by others.
+For the full legal text, please read the legal text online at https://polyformproject.org/licenses/shield/1.0.0/.
