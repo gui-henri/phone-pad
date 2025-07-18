@@ -108,6 +108,10 @@ main {
 
 }
 
+.header a {
+    color: var(--dark-orange);
+}
+
 .header {
     width: 875px;
     margin-left: -370px;
