@@ -6,6 +6,7 @@ class ControllerButton {
   final int? left;
   final int? right;
   final int? down;
+  final Icon? icon;
   final double size;
   final GlobalKey key;
   final Function onPress;
@@ -17,6 +18,7 @@ class ControllerButton {
     this.left,
     this.right,
     this.down,
+    this.icon,
     required this.size,
     required this.onPress,
     required this.onRelease,

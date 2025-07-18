@@ -43,7 +43,7 @@ class ControllerState {
     this.rightStickY = 50,
   });
 
-  List<int> toXCMobiCode() {
+  String toXCMobiCode() {
     var initialCode = "~";
     initialCode += _buttonPairToCode(aButton, bButton);
     initialCode += _buttonPairToCode(xButton, yButton);
@@ -58,7 +58,7 @@ class ControllerState {
     initialCode += _axisToCode(rightStickX);
     initialCode += _axisToCode(rightStickY);
     initialCode += "~";
-    return initialCode.codeUnits;
+    return initialCode;
   }
 
   String _buttonPairToCode(bool first, bool second) {

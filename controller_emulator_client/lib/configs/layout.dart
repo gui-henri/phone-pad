@@ -14,6 +14,11 @@ class ControllerLayout {
           top: 15,
           right: 350,
           size: 70,
+          icon: const Icon(
+            Icons.play_arrow,
+            color: Colors.white70,
+            size: 36,
+          ),
           onPress: () {
             pressed["Start"] = true;
             _updateState(state, () => state.startButton = true);
@@ -71,8 +76,13 @@ class ControllerLayout {
       ControllerButton(
         name: "Up",
         top: 110,
-        left: 100,
-        size: 80,
+        left: 270,
+        size: 60,
+        icon: const Icon(
+          Icons.keyboard_arrow_up,
+          color: Colors.white70,
+          size: 36,
+        ),
         onPress: () {
           pressed["Up"] = true;
           _updateState(state, () => state.upButton = true);
@@ -85,9 +95,14 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "Down",
-        top: 230,
-        left: 100,
-        size: 80,
+        top: 190,
+        left: 270,
+        size: 60,
+        icon: const Icon(
+          Icons.keyboard_arrow_down,
+          color: Colors.white70,
+          size: 36,
+        ),
         onPress: () {
           pressed["Down"] = true;
           _updateState(state, () => state.downButton = true);
@@ -100,9 +115,14 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "Left",
-        top: 170,
-        left: 30,
-        size: 80,
+        top: 150,
+        left: 230,
+        size: 60,
+        icon: const Icon(
+          Icons.keyboard_arrow_left,
+          color: Colors.white70,
+          size: 36,
+        ),
         onPress: () {
           pressed["Left"] = true;
           _updateState(state, () => state.leftButton = true);
@@ -115,9 +135,14 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "Right",
-        top: 170,
-        left: 170,
-        size: 80,
+        top: 150,
+        left: 310,
+        size: 60,
+        icon: const Icon(
+          Icons.keyboard_arrow_right,
+          color: Colors.white70,
+          size: 36,
+        ),
         onPress: () {
           pressed["Right"] = true;
           _updateState(state, () => state.rightButton = true);
@@ -178,6 +203,11 @@ class ControllerLayout {
         top: 15,
         left: 350,
         size: 70,
+        icon: const Icon(
+          Icons.list,
+          color: Colors.white70,
+          size: 36,
+        ),
         onPress: () {
           pressed["Select"] = true;
           _updateState(state, () => state.selectButton = true);
@@ -190,9 +220,9 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "A",
-        top: 230,
+        down: 30,
         right: 100,
-        size: 80,
+        size: 90,
         onPress: () {
           pressed["A"] = true;
           _updateState(state, () => state.aButton = true);
@@ -205,9 +235,9 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "B",
-        top: 170,
+        down: 90,
         right: 30,
-        size: 80,
+        size: 90,
         onPress: () {
           pressed["B"] = true;
           _updateState(state, () => state.bButton = true);
@@ -220,9 +250,9 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "X",
-        top: 170,
+        down: 90,
         right: 170,
-        size: 80,
+        size: 90,
         onPress: () {
           pressed["X"] = true;
           _updateState(state, () => state.xButton = true);
@@ -235,9 +265,9 @@ class ControllerLayout {
       ),
       ControllerButton(
         name: "Y",
-        top: 110,
+        down: 150,
         right: 100,
-        size: 80,
+        size: 90,
         onPress: () {
           pressed["Y"] = true;
           _updateState(state, () => state.yButton = true);

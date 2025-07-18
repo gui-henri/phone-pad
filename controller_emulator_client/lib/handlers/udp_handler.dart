@@ -10,6 +10,8 @@ class ConnectionHandler {
   Connection connection = Connection.disconnected;
   String _ip = "";
   int _port = 0;
+  String lastSendCode = "";
+
   static var _udp = UDP.bind(Endpoint.any(port: const Port(4322)));
   static Future<UDP> get udp async {
     var udpInstance = await _udp;
@@ -97,8 +99,15 @@ class ConnectionHandler {
       return;
     }
 
+    final newState = state.toXCMobiCode();
+
+    if (newState == lastSendCode) {
+      return;
+    }
+    lastSendCode = newState;
+
     final udpInstance = await udp;
-    await udpInstance.send(state.toXCMobiCode(),
+    await udpInstance.send(newState.codeUnits,
         Endpoint.unicast(InternetAddress(_ip), port: Port(_port)));
   }
 
