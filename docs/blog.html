@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PhonePad - Help</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Jersey+15&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="hero">
+                <div class="header">
+                    <div class="title-container">
+                        <h2>PhonePad</h2>
+                        <h1>PhonePad</h1>
+                    </div>
+                    <nav>
+                        <a href="index.html">Blog</a>
+                        <a href="https://github.com/gui-henri/phone-pad/releases">Downloads</a>
+                        <a href="index.html">Docs</a>
+                        <a href="https://galego.bearblog.dev/">Galego</a>
+                        <a>SIDU</a>
+                        <a href="help.html">Help</a>
+                    </nav>
+                </div>
+                <img id="broke-boy" src="./assets/broke-boy.png" alt="Boy has no money to buy a controller">
+                <img id="smart-girl" src="./assets/smart-girl.png" alt="Girl sugests using PhonePad as a controller">
+            </div>
+        </div>
+        <section class="brick-section">
+            <div class="brick-main-section">
+                <div class="book-container">
+                    <div class="book">
+                        <p class="book-label"><a href="/">The PhonePad Roadmap</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="footer">
+            <div class="footer-meet-the-creator">
+                <div class="footer-title">
+                    <p id="meet-text">Meet the creator:</p>
+                    <h2 id="galego-shadow">Galego</h2>
+                    <h2>Galego</h2>
+                    <h3>Software Developer</h3>
+                    <p>Github: gui-henri <br> Email: ghguihenrique@gmail.com</p>
+                </div>
+                <div class="footer-text">
+                    <p>
+                        You can contact me for support,
+                        questions or help in general. Don’t
+                        be shy, i will gladly answer!
+                    </p>
+                    <p>
+                        Also, i’m looking for a job. If you
+                        have an offer, let’s schedule a
+                        meeting!
+                    </p>
+                </div>
+            </div>
+            <div class="footer-powered-by">
+                <div>
+                    <h2>Powered by SIDU</h2>
+                    <p>
+                        SIDU is the Open Source connection library
+                        that powers PhonePad. You can use it to
+                        make connections between PCs and phones, like games that use PhonePad as a controller option.
+                        Releasing soon.
+                    </p>
+                </div>
+                <a id="visit-button" class="pixel-download" href="#">Visit</a>
+            </div>
+        </section>
+    </main>
+    <script>
+        function applyRandomHue() {
+            const books = document.querySelectorAll('.book');
+
+            books.forEach(book => {
+                const randomHue = Math.floor(Math.random() * 361);
+                book.style.filter = `hue-rotate(${randomHue}deg)`;
+            });
+        }
+
+        applyRandomHue();
+    </script>
+</body>
+
+</html>

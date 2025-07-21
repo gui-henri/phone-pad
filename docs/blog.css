@@ -1,0 +1,54 @@
+li {
+    font-size: 16pt;
+    color: var(--primary-orange);
+}
+
+.book {
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+}
+
+.hero {
+    display: flex;
+    flex-direction: row;
+}
+
+#broke-boy {
+    image-rendering: pixelated;
+    position: absolute;
+    bottom: -40px;
+    right: 170px;
+    width: 100px;
+}
+
+#smart-girl {
+    image-rendering: pixelated;
+    position: absolute;
+    bottom: -40px;
+    right: 150px;
+    width: 100px;
+}
+
+.book-label {
+    max-width: 150px;
+    color: var(--primary-green);
+    font-size: 16pt;
+    text-shadow:
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px 1px 0 #000000;
+}
+
+.book-container {
+    max-width: 1000px;
+}
+
+.book-container a {
+    color: var(--primary-green);
+}
+
+.book-container a:visited {
+    color: var(--primary-green);
+}

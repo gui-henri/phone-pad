@@ -1,0 +1,50 @@
+.hero {
+    height: 220px;
+}
+
+.header nav {
+    padding-top: 142.5px;
+}
+
+.book-container {
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book {
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.news-item h3 {
+    color: var(--secondary-purple);
+}
+
+.news-item p {
+    color: var(--text-white);
+}
+
+#miner1 {
+    image-rendering: pixelated;
+    position: absolute;
+    bottom: -40px;
+    right: 170px;
+    width: 100px;
+}
+
+.footer {
+    z-index: 1;
+}
+
+#miner2 {
+    image-rendering: pixelated;
+    position: fixed;
+    top: -270px;
+    right: 100px;
+    width: 100px;
+}
