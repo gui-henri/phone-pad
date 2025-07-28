@@ -1,0 +1,32 @@
+.brick-main-section {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 48px;
+    max-width: 1000px;
+}
+
+.blog-post-container h2 {
+    text-shadow:
+        -2px -2px 0 #000000,
+        2px -2px 0 #000000,
+        -2px 2px 0 #000000,
+        2px 2px 0 #000000;
+}
+
+.blog-post-container {
+    background-color: var(--secondary-purple);
+    padding: 6px 32px;
+    margin-bottom: 24px;
+    color: var(--text-white);
+    font-size: 20pt;
+    text-shadow:
+        -1.5px -1.5px 0 #000000,
+        1.5px -1.5px 0 #000000,
+        -1.5px 1.5px 0 #000000,
+        1.5px 1.5px 0 #000000;
+}
+
+.blog-post-container li {
+    color: var(--text-white);
+    font-size: 20pt;
+}
