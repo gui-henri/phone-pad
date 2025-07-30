@@ -30,3 +30,7 @@
     color: var(--text-white);
     font-size: 20pt;
 }
+
+.blog-post-container a {
+    color: var(--primary-green);
+}
